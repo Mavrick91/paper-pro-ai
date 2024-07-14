@@ -3,6 +3,7 @@ import { Button } from '@mantine/core';
 import BubbleBackground from '@/components/BubbleBackground';
 import Feature from '@/components/Feature';
 import HowItWorks from '@/components/HowItWorks';
+import Pricing from '@/components/Pricing';
 
 export default function HomePage() {
   return (
@@ -25,6 +26,7 @@ export default function HomePage() {
 
       <Feature />
       <HowItWorks />
+      <Pricing />
     </main>
   );
 }

@@ -13,7 +13,7 @@ const links = [
 ];
 
 const Header = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(window.scrollY > 20);
   const [active, setActive] = useState('');
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Header = () => {
 
       const currentPosition = window.scrollY + window.innerHeight / 2;
       const currentSectionIndex = sectionPositions.findIndex(
-        (position) => currentPosition >= position
+        (position) => position >= 0 && currentPosition >= position
       );
 
       setActive(links[currentSectionIndex]?.link || '');
