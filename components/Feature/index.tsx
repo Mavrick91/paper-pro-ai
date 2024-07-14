@@ -1,8 +1,10 @@
-import { Divider } from '@mantine/core';
+'use client';
+
+import { Divider, useMantineTheme } from '@mantine/core';
 
 const Feature = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-600 to-teal-900 py-20 text-white">
+    <div className="min-h-screen py-20" id="features">
       <div className="container mx-auto px-4">
         <h2 className="mb-16 text-center text-4xl font-bold">Discover Our Innovative Features</h2>
 
@@ -15,7 +17,12 @@ const Feature = () => {
             title="Instant Analysis"
           />
 
-          <Divider className="bg-teal-400 opacity-30" />
+          <Divider
+            className="h-[3px]"
+            style={{
+              background: 'linear-gradient(90deg, white 10%, #06B6D4 100%)',
+            }}
+          />
 
           <FeatureCard
             description="Elevate your writing with tailored suggestions. Our AI provides actionable recommendations to strengthen arguments, refine language, and polish your presentation."
@@ -25,7 +32,12 @@ const Feature = () => {
             title="Improvement Suggestions"
           />
 
-          <Divider className="bg-teal-400 opacity-30" />
+          <Divider
+            className="h-[3px]"
+            style={{
+              background: 'linear-gradient(90deg, #06B6D4 10%, white 100%)',
+            }}
+          />
 
           <FeatureCard
             description="Gain expert-level writing advice with our AI. Trained on vast academic databases, it offers deep analysis of arguments, identifies logical fallacies, and suggests ways to strengthen your thesis."
@@ -49,14 +61,28 @@ type FeatureCardProps = {
 };
 
 const FeatureCard = ({ title, description, imageUrl, imageAlt, reverse }: FeatureCardProps) => {
+  const theme = useMantineTheme();
+
   return (
     <div
       className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8`}
     >
       <div className="md:w-1/2">
-        <div className="rounded-xl bg-white/10 p-8 shadow-lg backdrop-blur-lg transition duration-300 hover:shadow-xl">
-          <h3 className="mb-4 text-3xl font-semibold text-teal-200">{title}</h3>
-          <p className="text-teal-50">{description}</p>
+        <div
+          className="rounded-xl p-8 shadow-lg backdrop-blur-lg transition duration-300 hover:shadow-xl"
+          style={{
+            background: theme.colors.teal[7],
+          }}
+        >
+          <h3
+            className="mb-4 text-4xl font-semibold text-teal-200"
+            style={{
+              color: theme.colors.teal[1],
+            }}
+          >
+            {title}
+          </h3>
+          <p className="text-white">{description}</p>
         </div>
       </div>
       <div className="md:w-1/2">

@@ -7,22 +7,42 @@ import { useEffect, useState } from 'react';
 import classes from './Header.module.css';
 
 const links = [
-  { link: '/features', label: 'Features' },
-  { link: '/how-it-works', label: 'How it works' },
-  { link: '/pricing', label: 'Pricing' },
+  { link: '#features', label: 'Features' },
+  { link: '#how-it-works', label: 'How it works' },
+  { link: '#pricing', label: 'Pricing' },
 ];
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState(links[0].link);
+  const [active, setActive] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      const sections = links.map((link) => document.querySelector(link.link));
+      const sectionPositions = sections.map((section) => section?.getBoundingClientRect().top ?? 0);
+
+      const currentPosition = window.scrollY + window.innerHeight / 2;
+      const currentSectionIndex = sectionPositions.findIndex(
+        (position) => currentPosition >= position
+      );
+
+      setActive(links[currentSectionIndex]?.link || '');
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>, link: string) => {
+    event.preventDefault();
+    setActive(link);
+    const targetElement = document.querySelector(link);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const items = links.map((link) => (
     <Link
@@ -30,10 +50,7 @@ const Header = () => {
       className={classes.link}
       data-active={active === link.link || undefined}
       href={link.link}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(link.link);
-      }}
+      onClick={(event) => handleLinkClick(event, link.link)}
     >
       {link.label}
     </Link>
