@@ -1,3 +1,3 @@
 export default function HomePage() {
-  return <div>Home page</div>;
+  return <div className="border border-red-500">Home page 2</div>;
 }

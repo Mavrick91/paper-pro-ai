@@ -1,22 +1,29 @@
-import "@mantine/core/styles.css";
-import React from "react";
-import { MantineProvider, ColorSchemeScript } from "@mantine/core";
-import { theme } from "../theme";
+import '@mantine/core/styles.css';
+import './global.css';
+
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+
+import { theme } from '../theme';
 
 export const metadata = {
-  title: "Mantine Next.js template",
-  description: "I am using Mantine with Next.js!",
+  title: 'PaperPro - AI-Powered Essay Feedback',
+  description:
+    'Get instant feedback on your essays with PaperPro. Improve your writing with AI-powered suggestions.',
 };
 
-export default function RootLayout({ children }: { children: any }) {
+type RootLayoutProps = {
+  children: React.ReactNode;
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head>
         <ColorSchemeScript />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link href="/favicon.svg" rel="shortcut icon" />
         <meta
-          name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+          name="viewport"
         />
       </head>
       <body>
