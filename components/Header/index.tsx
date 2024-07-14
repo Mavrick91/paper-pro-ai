@@ -1,21 +1,28 @@
 'use client';
 
-import { Burger, Button, Container, Group } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { Button, Container, Group, Text } from '@mantine/core';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import classes from './Header.module.css';
 
 const links = [
-  { link: '/about', label: 'Features' },
+  { link: '/features', label: 'Features' },
   { link: '/how-it-works', label: 'How it works' },
   { link: '/pricing', label: 'Pricing' },
 ];
 
 const Header = () => {
-  const [opened, { toggle }] = useDisclosure(false);
+  const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState(links[0].link);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const items = links.map((link) => (
     <Link
@@ -33,23 +40,22 @@ const Header = () => {
   ));
 
   return (
-    <header className={classes.header}>
+    <header className={`${classes.header} ${scrolled ? classes.headerScrolled : ''}`}>
       <Container className={classes.inner} size="md">
-        <Group>
-          <Burger hiddenFrom="sm" opened={opened} size="sm" onClick={toggle} />
+        <Text c="white" fw={700} size="lg">
           PaperPro AI
-        </Group>
+        </Text>
 
         <Group gap={5} visibleFrom="xs">
           {items}
         </Group>
 
         <Group gap={5} visibleFrom="xs">
-          <Button variant="default">Log in</Button>
-          <Button>Sign up</Button>
+          <Button color="gray.1" variant="outline">
+            Log in
+          </Button>
+          <Button color="teal.4">Sign up</Button>
         </Group>
-
-        <Burger hiddenFrom="xs" opened={opened} size="sm" onClick={toggle} />
       </Container>
     </header>
   );

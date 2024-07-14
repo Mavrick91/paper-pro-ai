@@ -1,0 +1,74 @@
+.header {
+  height: calc(3.5rem * var(--mantine-scale));
+  background-color: rgba(13, 96, 111, 0.2); /* Adjusted to a darker teal */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-bottom: calc(0.0625rem * var(--mantine-scale)) solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: background-color 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+}
+
+.headerScrolled {
+  background-color: rgba(13, 96, 111, 0.8); /* Darker version when scrolled */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+[data-mantine-color-scheme='dark'] .headerScrolled {
+  background-color: rgba(var(--mantine-color-dark-7), 0.8);
+  border-bottom-color: var(--mantine-color-dark-4);
+}
+
+.inner {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  color: var(--mantine-color-white);
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--mantine-radius-sm);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.link:hover {
+  background-color: rgba(255, 255, 255, 1);
+  color: var(--mantine-color-teal-5);
+}
+
+
+[data-mantine-color-scheme='dark'] .link {
+  color: var(--mantine-color-dark-0);
+}
+
+@media (hover: hover) {
+  .link:hover {
+    background-color: var(--mantine-color-gray-0);
+  }
+  [data-mantine-color-scheme='dark'] .link:hover {
+    background-color: var(--mantine-color-dark-6);
+  }
+}
+
+@media (hover: none) {
+  .link:active {
+    background-color: var(--mantine-color-gray-0);
+  }
+  [data-mantine-color-scheme='dark'] .link:active {
+    background-color: var(--mantine-color-dark-6);
+  }
+}
+
+[data-mantine-color-scheme] .link[data-active] {
+  background-color: var(--mantine-color-teal-4);
+  color: var(--mantine-color-white);
+}
