@@ -26,7 +26,7 @@ module.exports = {
         },
         '.bg-gradient': {
           'background-image':
-            "linear-gradient(135deg, theme('colors.primary'), theme('colors.secondary'))",
+            "linear-gradient(180deg, theme('colors.primary'), theme('colors.secondary'))",
         },
         '.text-gradient': {
           'line-height': 'normal !important',
@@ -34,6 +34,17 @@ module.exports = {
           '-webkit-text-fill-color': 'transparent',
           'background-image':
             "linear-gradient(45deg, theme('colors.accent'), theme('colors.highlight'))",
+        },
+        '.feature-card': {
+          background: 'rgba(255, 255, 255, 0.1)',
+          'backdrop-filter': 'blur(10px)',
+          'border-radius': '20px',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          transition: 'all 0.3s ease',
+        },
+        '.feature-card:hover': {
+          transform: 'translateY(-5px)',
+          'box-shadow': '0 10px 20px rgba(0, 0, 0, 0.2)',
         },
       });
     }),

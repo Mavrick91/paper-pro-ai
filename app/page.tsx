@@ -1,10 +1,11 @@
 import { Button } from '@mantine/core';
 
 import BubbleBackground from '@/components/BubbleBackground';
+import Feature from '@/components/Feature';
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="flex flex-col">
       <section className="relative flex h-screen items-center justify-center overflow-hidden">
         <BubbleBackground />
 
@@ -20,6 +21,8 @@ export default function HomePage() {
           </Button>
         </div>
       </section>
+
+      <Feature />
     </main>
   );
 }

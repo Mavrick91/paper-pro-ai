@@ -94,7 +94,7 @@ const BubbleBackground = () => {
   return (
     <div
       ref={containerRef}
-      className="bg-gradient pointer-events-none fixed inset-0 z-0 size-full"
+      className="bg-gradient pointer-events-none absolute inset-0 z-0 size-full"
     />
   );
 };
