@@ -3,6 +3,8 @@ import './global.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 
+import Header from '@/components/Header';
+
 import { theme } from '../theme';
 
 export const metadata = {
@@ -27,7 +29,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          <Header />
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );
